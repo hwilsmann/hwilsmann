@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: Ubuntu, 'Ubuntu Fallback', system-ui, sans-serif;
+
+  --color-background: #030303;
+  --color-foreground: #cecece;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray: #858585;
+  --color-primary: #00ab8a;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(0 171 138 / 0.5);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+    box-shadow: 0 0 0 5px rgb(0 171 138 / 0);
+  }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  animation: status-pulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot {
+    animation: none;
+  }
+}
