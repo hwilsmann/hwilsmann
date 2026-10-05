@@ -4,7 +4,9 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <footer class="border-gray border-t pt-5">
-    <div class="text-gray flex justify-between gap-5">
+    <div
+      class="text-gray sm: sm: flex flex-col items-center justify-between gap-5"
+    >
       <span class="text-sm">© {{ currentYear }} hwilsmann</span>
 
       <span class="inline-flex items-center gap-2 text-sm">

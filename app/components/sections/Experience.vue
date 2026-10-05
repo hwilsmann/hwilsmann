@@ -2,7 +2,7 @@
 const experiences = [
   {
     period: '2024 — Presente',
-    company: 'SESIOM',
+    company: 'Sesiom',
     url: 'https://www.linkedin.com/company/28186808/',
     description:
       'Desenvolvimento e evolução de sistemas corporativos internos, trabalhando com aplicações legadas em ASP e JavaScript. Foco em performance, experiência do usuário, integração com APIs, qualidade de código e melhorias contínuas alinhadas às necessidades do negócio.',
@@ -95,7 +95,7 @@ const experiences = [
         <article
           v-for="experience in experiences"
           :key="experience.company"
-          class="flex items-start gap-5"
+          class="sm: flex flex-col items-start gap-5"
         >
           <span class="text-gray w-28 shrink-0 text-sm">
             {{ experience.period }}
