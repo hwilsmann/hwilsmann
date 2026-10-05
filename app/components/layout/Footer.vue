@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear()
       <span class="text-sm">© {{ currentYear }} hwilsmann</span>
 
       <span class="inline-flex items-center gap-2 text-sm">
-        <span class="status-dot" aria-hidden="true"></span>
+        <span class="bg-primary size-2 rounded-full" aria-hidden="true"></span>
 
         Disponível para novos projetos
       </span>
