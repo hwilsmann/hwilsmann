@@ -36,6 +36,17 @@ export default defineNuxtConfig({
     ],
   },
 
+  image: {
+    screens: {
+      xs: 150,
+      sm: 300,
+      md: 640,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: {

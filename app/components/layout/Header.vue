@@ -9,7 +9,6 @@
         width="150"
         height="150"
         sizes="150px"
-        densities="1"
         class="size-37.5 shrink-0 rounded-full object-cover"
       />
 
