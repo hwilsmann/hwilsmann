@@ -2,11 +2,25 @@
 const experiences = [
   {
     period: '2024 — Presente',
-    company: 'SESIOM Soluções Ltda',
+    company: 'SESIOM',
     url: 'https://www.linkedin.com/company/28186808/',
     description:
       'Desenvolvimento e evolução de sistemas corporativos internos, trabalhando com aplicações legadas em ASP e JavaScript. Foco em performance, experiência do usuário, integração com APIs, qualidade de código e melhorias contínuas alinhadas às necessidades do negócio.',
-    technologies: ['ASP', 'JavaScript', 'Web Performance'],
+    technologies: [
+      'Vue.js',
+      'Nuxt',
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'ASP.NET',
+      'REST APIs',
+      'Tailwind CSS',
+      'Sass',
+      'HTML',
+      'Git',
+      'Web Performance',
+      'Figma',
+    ],
   },
   {
     period: '2020 — 2024',
@@ -14,7 +28,22 @@ const experiences = [
     url: 'https://www.linkedin.com/company/9338131/',
     description:
       'Desenvolvimento frontend para uma plataforma de e-commerce de alto tráfego, com foco em performance, acessibilidade, conversão e experiência do usuário. Atuação com React, JavaScript e Liquid, contribuindo para arquitetura frontend, decisões técnicas, integrações com APIs, SEO e melhorias nos Core Web Vitals.',
-    technologies: ['React', 'JavaScript', 'Liquid', 'Web Performance'],
+    technologies: [
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'Liquid',
+      'REST APIs',
+      'Tailwind CSS',
+      'Sass',
+      'HTML',
+      'Git',
+      'SEO',
+      'Web Performance',
+      'Core Web Vitals',
+      'Acessibilidade',
+      'Figma',
+    ],
   },
   {
     period: '2018 — 2019',
@@ -22,15 +51,35 @@ const experiences = [
     url: 'https://www.linkedin.com/company/3026673/',
     description:
       'Desenvolvimento e manutenção frontend para plataformas de e-commerce e sites institucionais, com foco em interfaces responsivas, usabilidade, compatibilidade entre navegadores, acessibilidade e colaboração próxima com os times de Design e Backend.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    technologies: [
+      'JavaScript',
+      'Sass',
+      'CSS',
+      'HTML',
+      'Responsive Design',
+      'Cross-browser',
+      'Acessibilidade',
+      'Git',
+      'Figma',
+    ],
   },
   {
     period: '2015 — 2018',
-    company: 'Trinto | Digital Partners',
+    company: 'Trinto',
     url: 'https://www.linkedin.com/company/3364531/',
     description:
       'Desenvolvimento frontend e customização de plataformas de e-commerce, com foco em performance, interfaces responsivas e modernização e manutenção gradual de sistemas legados.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    technologies: [
+      'JavaScript',
+      'Sass',
+      'CSS',
+      'HTML',
+      'Responsive Design',
+      'Cross-browser',
+      'Web Performance',
+      'Git',
+      'Figma',
+    ],
   },
 ]
 </script>
