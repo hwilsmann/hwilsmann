@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/sitemap',
     'nuxt-schema-org',
+    '@vercel/analytics',
   ],
 
   site: {
