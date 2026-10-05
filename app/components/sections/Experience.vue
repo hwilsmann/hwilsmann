@@ -95,7 +95,7 @@ const experiences = [
         <article
           v-for="experience in experiences"
           :key="experience.company"
-          class="sm: flex flex-col items-start gap-5"
+          class="flex flex-col items-start gap-5 md:flex-row"
         >
           <span class="text-gray w-28 shrink-0 text-sm">
             {{ experience.period }}
