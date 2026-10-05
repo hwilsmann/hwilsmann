@@ -30,6 +30,12 @@ useHead({
       href: 'https://hwilsmann.vercel.app',
     },
   ],
+  meta: [
+    {
+      name: 'theme-color',
+      content: '#00ab8a',
+    },
+  ],
 })
 
 useSchemaOrg([
