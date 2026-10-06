@@ -4,7 +4,7 @@
       class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left"
     >
       <NuxtImg
-        src="/images/avatar.png"
+        src="/images/avatar.webp"
         alt="Henrique Wilsmann"
         width="150"
         height="150"
