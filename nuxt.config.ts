@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/image',
     '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     'nuxt-schema-org',
     '@vercel/analytics',
   ],

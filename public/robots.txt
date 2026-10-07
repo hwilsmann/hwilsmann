@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow:
-
-Sitemap: https://hwilsmann.vercel.app/sitemap.xml
