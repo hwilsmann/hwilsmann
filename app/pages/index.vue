@@ -4,6 +4,7 @@ import Experience from '~/components/sections/Experience.vue'
 import WorkTogether from '~/components/sections/WorkTogether.vue'
 import Spotify from '~/components/sections/Spotify.vue'
 import Contact from '~/components/sections/Contact.vue'
+// import Case from '~/components/sections/Case.vue'
 
 useSeo()
 </script>
@@ -13,6 +14,7 @@ useSeo()
     <About />
     <Experience />
     <WorkTogether />
+    <!--<Case />-->
     <Spotify />
     <Contact />
   </div>
