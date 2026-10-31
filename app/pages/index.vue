@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import About from '~/components/sections/About.vue'
 import Experience from '~/components/sections/Experience.vue'
-import WorkTogether from '~/components/sections/WorkTogether.vue'
-import Spotify from '~/components/sections/Spotify.vue'
+import Competence from '~/components/sections/Competence.vue'
 import Contact from '~/components/sections/Contact.vue'
-// import Case from '~/components/sections/Case.vue'
+import Hero from '~/components/sections/Hero.vue'
 
 useSeo()
 </script>
 
 <template>
-  <div class="flex flex-col gap-20">
+  <div>
+    <Hero />
     <About />
     <Experience />
-    <WorkTogether />
-    <!--<Case />-->
-    <Spotify />
+    <Competence />
     <Contact />
   </div>
 </template>

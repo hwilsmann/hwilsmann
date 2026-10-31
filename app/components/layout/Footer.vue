@@ -1,19 +1,24 @@
 <script setup lang="ts">
-const currentYear = new Date().getFullYear()
+const { translate } = useLocale()
 </script>
 
 <template>
-  <footer class="border-gray border-t pt-5">
+  <footer id="footer" class="py-10 md:py-12">
     <div
-      class="text-gray flex flex-col items-center gap-5 md:flex-row md:justify-between"
+      class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-5 text-center md:flex-row md:gap-8 md:px-8 md:text-left lg:gap-12 lg:px-0"
     >
-      <span class="text-sm">© {{ currentYear }} hwilsmann</span>
+      <em class="text-xl font-bold tracking-tighter">
+        hw <span class="text-primary">.</span>
+      </em>
 
-      <span class="inline-flex items-center gap-2 text-sm">
-        <span class="bg-primary size-2 rounded-full" aria-hidden="true"></span>
+      <small class="text-gray/50 text-[10px] leading-5">
+        © {{ new Date().getFullYear() }} Henrique Wilsmann &#9749;.
+        {{ translate('footer.copyright') }}
+      </small>
 
-        Disponível para novos projetos
-      </span>
+      <a class="text-gray/50 border-b text-[10px]" href="#header">
+        {{ translate('footer.anchor') }} &#129125;
+      </a>
     </div>
   </footer>
 </template>

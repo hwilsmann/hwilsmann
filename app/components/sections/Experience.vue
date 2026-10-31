@@ -1,131 +1,81 @@
 <script setup lang="ts">
-const experiences = [
-  {
-    period: '2024 — Presente',
-    company: 'Sesiom',
-    url: 'https://www.linkedin.com/company/28186808/',
-    description:
-      'Desenvolvimento e evolução de sistemas corporativos internos, trabalhando com aplicações legadas em ASP e JavaScript. Foco em performance, experiência do usuário, integração com APIs, qualidade de código e melhorias contínuas alinhadas às necessidades do negócio.',
-    technologies: [
-      'Vue.js',
-      'Nuxt',
-      'React',
-      'TypeScript',
-      'JavaScript',
-      'ASP.NET',
-      'REST APIs',
-      'Tailwind CSS',
-      'Sass',
-      'HTML',
-      'Git',
-      'Web Performance',
-      'Figma',
-    ],
-  },
-  {
-    period: '2020 — 2024',
-    company: 'Olist',
-    url: 'https://www.linkedin.com/company/9338131/',
-    description:
-      'Desenvolvimento frontend para uma plataforma de e-commerce de alto tráfego, com foco em performance, acessibilidade, conversão e experiência do usuário. Atuação com React, JavaScript e Liquid, contribuindo para arquitetura frontend, decisões técnicas, integrações com APIs, SEO e melhorias nos Core Web Vitals.',
-    technologies: [
-      'React',
-      'TypeScript',
-      'JavaScript',
-      'Liquid',
-      'REST APIs',
-      'Tailwind CSS',
-      'Sass',
-      'HTML',
-      'Git',
-      'SEO',
-      'Web Performance',
-      'Core Web Vitals',
-      'Acessibilidade',
-      'Figma',
-    ],
-  },
-  {
-    period: '2018 — 2019',
-    company: 'Voren',
-    url: 'https://www.linkedin.com/company/3026673/',
-    description:
-      'Desenvolvimento e manutenção frontend para plataformas de e-commerce e sites institucionais, com foco em interfaces responsivas, usabilidade, compatibilidade entre navegadores, acessibilidade e colaboração próxima com os times de Design e Backend.',
-    technologies: [
-      'JavaScript',
-      'Sass',
-      'CSS',
-      'HTML',
-      'Responsive Design',
-      'Cross-browser',
-      'Acessibilidade',
-      'Git',
-      'Figma',
-    ],
-  },
-  {
-    period: '2015 — 2018',
-    company: 'Trinto',
-    url: 'https://www.linkedin.com/company/3364531/',
-    description:
-      'Desenvolvimento frontend e customização de plataformas de e-commerce, com foco em performance, interfaces responsivas e modernização e manutenção gradual de sistemas legados.',
-    technologies: [
-      'JavaScript',
-      'Sass',
-      'CSS',
-      'HTML',
-      'Responsive Design',
-      'Cross-browser',
-      'Web Performance',
-      'Git',
-      'Figma',
-    ],
-  },
-]
+import en from '~/locales/en'
+import pt from '~/locales/pt'
+
+const { translate, locale } = useLocale()
+
+type Experience = {
+  period: string
+  company: string
+  workload: string
+  location: string
+  highlights: readonly string[]
+}
+
+const experiences = computed<readonly Experience[]>(() => {
+  return locale.value === 'en'
+    ? en.experience.experiences
+    : pt.experience.experiences
+})
 </script>
 
 <template>
-  <section>
-    <div class="flex flex-col gap-5">
-      <h2 class="text-gray text-sm font-medium tracking-widest uppercase">
-        Experiência
-      </h2>
+  <section id="experience" class="py-20 md:py-28 lg:py-36">
+    <div
+      class="mx-auto flex max-w-6xl flex-col gap-10 px-5 md:gap-12 md:px-8 lg:px-0"
+    >
+      <div class="flex flex-col gap-4">
+        <span class="text-gray/50">{{ translate('experience.label') }}</span>
 
-      <div class="flex flex-col gap-8">
-        <article
+        <h2
+          class="text-5xl font-medium tracking-tighter sm:text-6xl lg:text-7xl"
+        >
+          {{ translate('experience.title.first') }}
+
+          <em class="text-primary">
+            {{ translate('experience.title.second') }} </em
+          >.
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-10 md:gap-12">
+        <div
           v-for="experience in experiences"
           :key="experience.company"
-          class="flex flex-col items-start gap-5 md:flex-row"
+          class="border-gray/10 grid grid-cols-1 items-start gap-6 border-t pt-8 md:grid-cols-[1fr_2fr] md:gap-8 md:pt-10 lg:gap-12 lg:pt-12"
         >
-          <span class="text-gray w-28 shrink-0 text-sm">
+          <span class="text-gray/50">
             {{ experience.period }}
           </span>
 
-          <div class="flex flex-col gap-5">
-            <a
-              class="hover:text-primary font-medium text-white transition-colors"
-              :href="experience.url"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ experience.company }} &#8605;
-            </a>
+          <div class="flex flex-col items-start gap-4">
+            <div class="flex flex-col items-start gap-1">
+              <h3 class="text-2xl font-medium tracking-tighter">
+                {{ experience.company }}
+              </h3>
 
-            <p>
-              {{ experience.description }}
-            </p>
+              <div class="flex flex-col gap-1">
+                <span class="text-gray/75">
+                  {{ experience.workload }}
+                </span>
 
-            <ul class="flex flex-wrap gap-1">
+                <span class="text-gray/75">
+                  {{ experience.location }}
+                </span>
+              </div>
+            </div>
+
+            <ul class="flex list-inside list-disc flex-col gap-1">
               <li
-                v-for="technology in experience.technologies"
+                v-for="technology in experience.highlights"
                 :key="technology"
-                class="border-primary/20 bg-primary/10 text-primary rounded-full border px-2.5 py-1 text-xs font-bold"
+                class="leading-6"
               >
                 {{ technology }}
               </li>
             </ul>
           </div>
-        </article>
+        </div>
       </div>
     </div>
   </section>

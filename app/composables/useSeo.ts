@@ -1,21 +1,18 @@
 export const useSeo = () => {
   useSeoMeta({
-    title:
-      'Henrique Wilsmann — Desenvolvedor Frontend Vue.js, Nuxt e TypeScript',
+    title: 'Henrique Wilsmann — Desenvolvedor Front-end',
     description:
-      'Henrique Wilsmann é Desenvolvedor Frontend com mais de 9 anos de experiência em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Especialista em arquitetura frontend, interfaces escaláveis, design systems, performance, acessibilidade e integração com APIs.',
+      'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
     ogUrl: 'https://hwilsmann.vercel.app',
-    ogTitle:
-      'Henrique Wilsmann — Desenvolvedor Frontend Vue.js, Nuxt e TypeScript',
+    ogTitle: 'Henrique Wilsmann — Desenvolvedor Front-end',
     ogDescription:
-      'Desenvolvedor Frontend com mais de 9 anos de experiência em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS, com foco em arquitetura frontend, design systems, performance, acessibilidade e interfaces escaláveis.',
+      'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
     ogType: 'website',
     ogLocale: 'pt_BR',
     twitterCard: 'summary_large_image',
-    twitterTitle:
-      'Henrique Wilsmann — Desenvolvedor Frontend Vue.js, Nuxt e TypeScript',
+    twitterTitle: 'Henrique Wilsmann — Desenvolvedor Front-end',
     twitterDescription:
-      'Desenvolvedor Frontend com mais de 9 anos de experiência em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Arquitetura frontend, design systems, performance e acessibilidade.',
+      'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
   })
 
   useHead({
@@ -38,21 +35,21 @@ export const useSeo = () => {
       '@type': 'Person',
       name: 'Henrique Wilsmann',
       url: 'https://hwilsmann.vercel.app',
-      jobTitle: 'Desenvolvedor Frontend',
+      jobTitle: 'Desenvolvedor Front-end',
       description:
-        'Desenvolvedor Frontend com mais de 9 anos de experiência em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS, com experiência em arquitetura frontend, design systems, performance, acessibilidade e integração com APIs.',
+        'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
       sameAs: [
         'https://www.linkedin.com/in/hwilsmann/',
         'https://github.com/hwilsmann',
       ],
       knowsAbout: [
-        'Desenvolvimento Frontend',
+        'Desenvolvimento Front-end',
         'Vue.js',
         'Nuxt',
         'TypeScript',
         'JavaScript',
         'Tailwind CSS',
-        'Arquitetura Frontend',
+        'Arquitetura Front-end',
         'Design Systems',
         'Performance Web',
         'Acessibilidade Web',

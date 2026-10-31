@@ -3,6 +3,13 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+
   devtools: {
     enabled: false,
   },
@@ -25,6 +32,10 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      chunkSizeWarningLimit: 800,
+      sourcemap: true,
+    },
   },
 
   fonts: {
@@ -64,19 +75,23 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'icon',
-          type: 'image/png',
-          href: '/favicon-96x96.png',
-          sizes: '96x96',
-        },
-        {
-          rel: 'icon',
           type: 'image/svg+xml',
           href: '/favicon.svg',
         },
+
         {
-          rel: 'shortcut icon',
+          rel: 'icon',
+          type: 'image/x-icon',
           href: '/favicon.ico',
         },
+
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '96x96',
+          href: '/favicon-96x96.png',
+        },
+
         {
           rel: 'apple-touch-icon',
           sizes: '180x180',

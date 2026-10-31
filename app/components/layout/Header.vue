@@ -1,33 +1,121 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const { locale, setLocale, translate } = useLocale()
+
+const menuOpen = ref(false)
+
+const closeMenu = () => {
+  menuOpen.value = false
+}
+</script>
+
 <template>
-  <header>
-    <div
-      class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left"
-    >
-      <NuxtImg
-        src="/images/avatar.webp"
-        alt="Henrique Wilsmann"
-        width="150"
-        height="150"
-        sizes="150px"
-        class="size-37.5 shrink-0 rounded-full object-cover"
-      />
+  <header id="header" class="py-8 md:py-12">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 md:px-8 lg:px-0">
+      <div class="flex w-full items-center justify-between gap-4">
+        <em class="text-xl font-bold tracking-tighter">
+          hw <span class="text-primary">.</span>
+        </em>
 
-      <div class="flex flex-col items-center gap-1 sm:items-start">
-        <h1 class="text-3xl font-medium text-white">Henrique Wilsmann</h1>
+        <nav class="hidden gap-4 md:flex">
+          <a class="border-b" href="#about"
+            >{{ translate('nav.about') }} &#129125;</a
+          >
 
-        <p class="text-gray leading-relaxed">
-          Desenvolvedor Frontend — Interfaces de Produto, Design Systems &
-          Experiências Digitais
-        </p>
+          <a class="border-b" href="#experience"
+            >{{ translate('nav.experience') }} &#129125;</a
+          >
 
-        <a
-          class="text-gray hover:text-primary text-xs transition-colors"
-          href="https://www.linkedin.com/in/hwilsmann/"
-          target="_blank"
-          rel="noopener noreferrer"
+          <a class="border-b" href="#competence"
+            >{{ translate('nav.skills') }} &#129125;</a
+          >
+
+          <a class="border-b" href="#contact"
+            >{{ translate('nav.contact') }} &#129125;</a
+          >
+        </nav>
+
+        <div class="hidden items-center gap-1 rounded-full border p-1 md:flex">
+          <button
+            type="button"
+            class="cursor-pointer rounded-full px-4 py-2"
+            :class="locale === 'pt' ? 'bg-primary text-white' : ''"
+            :aria-pressed="locale === 'pt'"
+            @click="setLocale('pt')"
+          >
+            PT
+          </button>
+
+          <button
+            type="button"
+            class="cursor-pointer rounded-full px-4 py-2"
+            :class="locale === 'en' ? 'bg-primary text-white' : ''"
+            :aria-pressed="locale === 'en'"
+            @click="setLocale('en')"
+          >
+            EN
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border md:hidden"
+          :aria-expanded="menuOpen"
+          aria-controls="mobile-menu"
+          :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
+          @click="menuOpen = !menuOpen"
         >
-          @hwilsmann &#8605;
-        </a>
+          <span aria-hidden="true" class="text-xl leading-none">
+            {{ menuOpen ? '×' : '☰' }}
+          </span>
+        </button>
+      </div>
+
+      <div
+        v-if="menuOpen"
+        id="mobile-menu"
+        class="border-gray/10 flex flex-col gap-6 border-t pt-6 md:hidden"
+      >
+        <nav class="flex flex-col items-start gap-5">
+          <a class="border-b" href="#about" @click="closeMenu">
+            {{ translate('nav.about') }} &#129125;
+          </a>
+
+          <a class="border-b" href="#experience" @click="closeMenu">
+            {{ translate('nav.experience') }} &#129125;
+          </a>
+
+          <a class="border-b" href="#competence" @click="closeMenu">
+            {{ translate('nav.skills') }} &#129125;
+          </a>
+
+          <a class="border-b" href="#contact" @click="closeMenu">
+            {{ translate('nav.contact') }} &#129125;
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-1 self-start rounded-full border p-1">
+          <button
+            type="button"
+            class="cursor-pointer rounded-full px-4 py-2"
+            :class="locale === 'pt' ? 'bg-primary text-white' : ''"
+            :aria-pressed="locale === 'pt'"
+            @click="setLocale('pt')"
+          >
+            PT
+          </button>
+
+          <button
+            type="button"
+            class="cursor-pointer rounded-full px-4 py-2"
+            :class="locale === 'en' ? 'bg-primary text-white' : ''"
+            :aria-pressed="locale === 'en'"
+            @click="setLocale('en')"
+          >
+            EN
+          </button>
+        </div>
       </div>
     </div>
   </header>

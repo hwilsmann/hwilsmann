@@ -1,54 +1,58 @@
 <script setup lang="ts">
-const contacts = [
-  {
-    label: 'GitHub',
-    value: '@hwilsmann',
-    url: 'https://github.com/hwilsmann',
-    external: true,
-  },
-  {
-    label: 'LinkedIn',
-    value: '@hwilsmann',
-    url: 'https://www.linkedin.com/in/hwilsmann/',
-    external: true,
-  },
-  {
-    label: 'WhatsApp',
-    value: '+55 (51) 99904-4946',
-    url: 'https://wa.me/5551999044946',
-    external: true,
-  },
-  {
-    label: 'Email',
-    value: 'hwilsmann83@gmail.com',
-    url: 'mailto:hwilsmann83@gmail.com',
-  },
-]
+const { translate } = useLocale()
 </script>
 
 <template>
-  <section>
-    <div class="flex flex-col gap-5">
-      <h2 class="text-gray text-sm font-medium tracking-widest uppercase">
-        Contato
-      </h2>
+  <section id="contact" class="bg-primary/50 py-20 md:py-28 lg:py-36">
+    <div
+      class="mx-auto flex max-w-6xl flex-col gap-10 px-5 md:gap-12 md:px-8 lg:px-0"
+    >
+      <div class="flex flex-col gap-4">
+        <span class="text-gray/50">{{ translate('contact.label') }}</span>
 
-      <ul class="flex flex-col gap-3">
-        <li v-for="contact in contacts" :key="contact.label">
-          <span class="text-gray inline-block w-28 text-sm">
-            {{ contact.label }}
-          </span>
+        <h2
+          class="text-5xl font-medium tracking-tighter sm:text-6xl lg:text-7xl"
+        >
+          {{ translate('contact.title.first') }}
+
+          <em class="text-primary"> {{ translate('contact.title.second') }} </em
+          >.
+        </h2>
+      </div>
+
+      <div
+        class="border-gray/10 grid grid-cols-1 items-start gap-8 border-t pt-8 md:grid-cols-[2fr_1fr] md:gap-8 md:pt-10 lg:gap-12 lg:pt-12"
+      >
+        <p class="text-gray/75 leading-6">
+          {{ translate('contact.description') }}
+        </p>
+
+        <div class="flex flex-col items-start gap-4">
+          <a
+            class="text-gray/75 border-b break-all"
+            href="https://www.linkedin.com/in/hwilsmann/"
+            target="_blank"
+          >
+            linkedin.com/in/hwilsmann &#129125;
+          </a>
 
           <a
-            class="hover:text-primary focus-visible:outline-primary text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-            :href="contact.url"
-            :target="contact.external ? '_blank' : undefined"
-            :rel="contact.external ? 'noopener noreferrer' : undefined"
+            class="text-gray/75 border-b break-all"
+            href="https://github.com/hwilsmann"
+            target="_blank"
           >
-            {{ contact.value }} &#8605;
+            github.com/hwilsmann &#129125;
           </a>
-        </li>
-      </ul>
+
+          <a
+            class="text-gray/75 border-b break-all"
+            href="mailto:hwilsmann83@gmail.com"
+            target="_blank"
+          >
+            hwilsmann83@gmail.com &#129125;
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
