@@ -45,24 +45,24 @@ const { translate } = useLocale()
 
             <div class="flex flex-wrap gap-x-4 gap-y-2">
               <a
-                class="text-dark-gray border-b"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://www.linkedin.com/in/hwilsmann/"
               >
-                {{ translate('about.anchor.linkedin') }} 🡥
+                {{ translate('about.anchor.linkedin') }} <Arrow />
               </a>
 
               <a
-                class="text-dark-gray border-b"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://github.com/hwilsmann"
               >
-                {{ translate('about.anchor.github') }} 🡥
+                {{ translate('about.anchor.github') }} <Arrow />
               </a>
 
               <a
-                class="text-dark-gray border-b"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="mailto:hwilsmann83@gmail.com"
               >
-                {{ translate('about.anchor.email') }} 🡥
+                {{ translate('about.anchor.email') }} <Arrow />
               </a>
             </div>
           </div>

@@ -29,8 +29,11 @@ const { translate } = useLocale()
                 {{ translate('hero.description') }}
               </p>
 
-              <a class="text-gray/50 border-b" href="#about">
-                {{ translate('hero.anchor') }} 🡥
+              <a
+                class="text-gray/50 flex items-center gap-1 border-b"
+                href="#about"
+              >
+                {{ translate('hero.anchor') }} <Arrow />
               </a>
             </div>
           </div>

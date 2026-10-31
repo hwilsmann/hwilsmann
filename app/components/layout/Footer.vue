@@ -11,13 +11,16 @@ const { translate } = useLocale()
         hw <span class="text-primary">.</span>
       </em>
 
-      <small class="text-gray/50 text-[10px] leading-5">
+      <small class="text-gray/50 text-[0.625rem] leading-5">
         © {{ new Date().getFullYear() }} Henrique Wilsmann &#9749;.
         {{ translate('footer.copyright') }}
       </small>
 
-      <a class="text-gray/50 border-b text-[10px]" href="#header">
-        {{ translate('footer.anchor') }} 🡥
+      <a
+        class="text-gray/50 flex items-center gap-1 border-b text-[0.625rem]"
+        href="#header"
+      >
+        {{ translate('footer.anchor') }} <Arrow />
       </a>
     </div>
   </footer>

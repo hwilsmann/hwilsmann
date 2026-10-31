@@ -19,19 +19,21 @@ const closeMenu = () => {
         </em>
 
         <nav class="hidden gap-4 md:flex">
-          <a class="border-b" href="#about">{{ translate('nav.about') }} 🡥</a>
+          <a class="flex items-center gap-1 border-b" href="#about"
+            >{{ translate('nav.about') }} <Arrow
+          /></a>
 
-          <a class="border-b" href="#experience"
-            >{{ translate('nav.experience') }} 🡥</a
-          >
+          <a class="flex items-center gap-1 border-b" href="#experience"
+            >{{ translate('nav.experience') }} <Arrow
+          /></a>
 
-          <a class="border-b" href="#competence"
-            >{{ translate('nav.skills') }} 🡥</a
-          >
+          <a class="flex items-center gap-1 border-b" href="#competence"
+            >{{ translate('nav.skills') }} <Arrow
+          /></a>
 
-          <a class="border-b" href="#contact"
-            >{{ translate('nav.contact') }} 🡥</a
-          >
+          <a class="flex items-center gap-1 border-b" href="#contact"
+            >{{ translate('nav.contact') }} <Arrow
+          /></a>
         </nav>
 
         <div class="hidden items-center gap-1 rounded-full border p-1 md:flex">
@@ -61,7 +63,6 @@ const closeMenu = () => {
           class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border md:hidden"
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
-          :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
           @click="menuOpen = !menuOpen"
         >
           <span aria-hidden="true" class="text-xl leading-none">
@@ -76,20 +77,36 @@ const closeMenu = () => {
         class="border-gray/10 flex flex-col gap-6 border-t pt-6 md:hidden"
       >
         <nav class="flex flex-col items-start gap-5">
-          <a class="border-b" href="#about" @click="closeMenu">
-            {{ translate('nav.about') }} 🡥
+          <a
+            class="flex items-center gap-1 border-b"
+            href="#about"
+            @click="closeMenu"
+          >
+            {{ translate('nav.about') }} <Arrow />
           </a>
 
-          <a class="border-b" href="#experience" @click="closeMenu">
-            {{ translate('nav.experience') }} 🡥
+          <a
+            class="flex items-center gap-1 border-b"
+            href="#experience"
+            @click="closeMenu"
+          >
+            {{ translate('nav.experience') }} <Arrow />
           </a>
 
-          <a class="border-b" href="#competence" @click="closeMenu">
-            {{ translate('nav.skills') }} 🡥
+          <a
+            class="flex items-center gap-1 border-b"
+            href="#competence"
+            @click="closeMenu"
+          >
+            {{ translate('nav.skills') }} <Arrow />
           </a>
 
-          <a class="border-b" href="#contact" @click="closeMenu">
-            {{ translate('nav.contact') }} 🡥
+          <a
+            class="flex items-center gap-1 border-b"
+            href="#contact"
+            @click="closeMenu"
+          >
+            {{ translate('nav.contact') }} <Arrow />
           </a>
         </nav>
 

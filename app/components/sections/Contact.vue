@@ -29,27 +29,27 @@ const { translate } = useLocale()
 
         <div class="flex flex-col items-start gap-4">
           <a
-            class="text-gray/75 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b break-all"
             href="https://www.linkedin.com/in/hwilsmann/"
             target="_blank"
           >
-            linkedin.com/in/hwilsmann 🡥
+            linkedin.com/in/hwilsmann <Arrow />
           </a>
 
           <a
-            class="text-gray/75 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b break-all"
             href="https://github.com/hwilsmann"
             target="_blank"
           >
-            github.com/hwilsmann 🡥
+            github.com/hwilsmann <Arrow />
           </a>
 
           <a
-            class="text-gray/75 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b break-all"
             href="mailto:hwilsmann83@gmail.com"
             target="_blank"
           >
-            hwilsmann83@gmail.com 🡥
+            hwilsmann83@gmail.com <Arrow />
           </a>
         </div>
       </div>
