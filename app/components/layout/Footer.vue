@@ -17,7 +17,7 @@ const { translate } = useLocale()
       </small>
 
       <a class="text-gray/50 border-b text-[10px]" href="#header">
-        {{ translate('footer.anchor') }} &#129125;
+        {{ translate('footer.anchor') }} 🡥
       </a>
     </div>
   </footer>

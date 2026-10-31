@@ -30,7 +30,7 @@ const { translate } = useLocale()
               </p>
 
               <a class="text-gray/50 border-b" href="#about">
-                {{ translate('hero.anchor') }} &#129125;
+                {{ translate('hero.anchor') }} 🡥
               </a>
             </div>
           </div>

@@ -33,7 +33,7 @@ const { translate } = useLocale()
             href="https://www.linkedin.com/in/hwilsmann/"
             target="_blank"
           >
-            linkedin.com/in/hwilsmann &#129125;
+            linkedin.com/in/hwilsmann 🡥
           </a>
 
           <a
@@ -41,7 +41,7 @@ const { translate } = useLocale()
             href="https://github.com/hwilsmann"
             target="_blank"
           >
-            github.com/hwilsmann &#129125;
+            github.com/hwilsmann 🡥
           </a>
 
           <a
@@ -49,7 +49,7 @@ const { translate } = useLocale()
             href="mailto:hwilsmann83@gmail.com"
             target="_blank"
           >
-            hwilsmann83@gmail.com &#129125;
+            hwilsmann83@gmail.com 🡥
           </a>
         </div>
       </div>

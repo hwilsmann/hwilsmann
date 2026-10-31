@@ -19,20 +19,18 @@ const closeMenu = () => {
         </em>
 
         <nav class="hidden gap-4 md:flex">
-          <a class="border-b" href="#about"
-            >{{ translate('nav.about') }} &#129125;</a
-          >
+          <a class="border-b" href="#about">{{ translate('nav.about') }} 🡥</a>
 
           <a class="border-b" href="#experience"
-            >{{ translate('nav.experience') }} &#129125;</a
+            >{{ translate('nav.experience') }} 🡥</a
           >
 
           <a class="border-b" href="#competence"
-            >{{ translate('nav.skills') }} &#129125;</a
+            >{{ translate('nav.skills') }} 🡥</a
           >
 
           <a class="border-b" href="#contact"
-            >{{ translate('nav.contact') }} &#129125;</a
+            >{{ translate('nav.contact') }} 🡥</a
           >
         </nav>
 
@@ -79,19 +77,19 @@ const closeMenu = () => {
       >
         <nav class="flex flex-col items-start gap-5">
           <a class="border-b" href="#about" @click="closeMenu">
-            {{ translate('nav.about') }} &#129125;
+            {{ translate('nav.about') }} 🡥
           </a>
 
           <a class="border-b" href="#experience" @click="closeMenu">
-            {{ translate('nav.experience') }} &#129125;
+            {{ translate('nav.experience') }} 🡥
           </a>
 
           <a class="border-b" href="#competence" @click="closeMenu">
-            {{ translate('nav.skills') }} &#129125;
+            {{ translate('nav.skills') }} 🡥
           </a>
 
           <a class="border-b" href="#contact" @click="closeMenu">
-            {{ translate('nav.contact') }} &#129125;
+            {{ translate('nav.contact') }} 🡥
           </a>
         </nav>
 

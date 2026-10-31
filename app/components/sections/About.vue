@@ -48,21 +48,21 @@ const { translate } = useLocale()
                 class="text-dark-gray border-b"
                 href="https://www.linkedin.com/in/hwilsmann/"
               >
-                {{ translate('about.anchor.linkedin') }} &#129125;
+                {{ translate('about.anchor.linkedin') }} 🡥
               </a>
 
               <a
                 class="text-dark-gray border-b"
                 href="https://github.com/hwilsmann"
               >
-                {{ translate('about.anchor.github') }} &#129125;
+                {{ translate('about.anchor.github') }} 🡥
               </a>
 
               <a
                 class="text-dark-gray border-b"
                 href="mailto:hwilsmann83@gmail.com"
               >
-                {{ translate('about.anchor.email') }} &#129125;
+                {{ translate('about.anchor.email') }} 🡥
               </a>
             </div>
           </div>
