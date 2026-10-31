@@ -51,6 +51,13 @@ const { translate } = useLocale()
           >
             hwilsmann83@gmail.com <Arrow />
           </a>
+          <a
+            class="text-gray/75 flex items-center gap-1 border-b break-all"
+            href="https://wa.me/5551999044946"
+            target="_blank"
+          >
+            +51 99904-4946 <Arrow />
+          </a>
         </div>
       </div>
     </div>

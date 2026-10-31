@@ -47,6 +47,7 @@ const { translate } = useLocale()
               <a
                 class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://www.linkedin.com/in/hwilsmann/"
+                target="_blank"
               >
                 {{ translate('about.anchor.linkedin') }} <Arrow />
               </a>
@@ -54,6 +55,7 @@ const { translate } = useLocale()
               <a
                 class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://github.com/hwilsmann"
+                target="_blank"
               >
                 {{ translate('about.anchor.github') }} <Arrow />
               </a>
@@ -61,8 +63,16 @@ const { translate } = useLocale()
               <a
                 class="text-dark-gray flex items-center gap-1 border-b"
                 href="mailto:hwilsmann83@gmail.com"
+                target="_blank"
               >
                 {{ translate('about.anchor.email') }} <Arrow />
+              </a>
+              <a
+                class="text-dark-gray flex items-center gap-1 border-b"
+                href="https://wa.me/5551999044946"
+                target="_blank"
+              >
+                {{ translate('about.anchor.whatsapp') }} <Arrow />
               </a>
             </div>
           </div>

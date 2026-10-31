@@ -32,6 +32,7 @@ export default {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       email: 'Email',
+      whatsapp: 'WhatsApp',
     },
     principles: [
       {
