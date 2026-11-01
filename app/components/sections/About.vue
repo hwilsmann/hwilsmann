@@ -45,32 +45,35 @@ const { translate } = useLocale()
 
             <div class="flex flex-wrap gap-x-4 gap-y-2">
               <a
-                class="text-dark-gray flex items-center gap-1 border-b"
+                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
                 href="https://www.linkedin.com/in/hwilsmann/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {{ translate('about.anchor.linkedin') }} <Arrow />
               </a>
 
               <a
-                class="text-dark-gray flex items-center gap-1 border-b"
+                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
                 href="https://github.com/hwilsmann"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {{ translate('about.anchor.github') }} <Arrow />
               </a>
 
               <a
-                class="text-dark-gray flex items-center gap-1 border-b"
+                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
                 href="mailto:hwilsmann83@gmail.com"
-                target="_blank"
               >
                 {{ translate('about.anchor.email') }} <Arrow />
               </a>
+
               <a
-                class="text-dark-gray flex items-center gap-1 border-b"
+                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
                 href="https://wa.me/5551999044946"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {{ translate('about.anchor.whatsapp') }} <Arrow />
               </a>

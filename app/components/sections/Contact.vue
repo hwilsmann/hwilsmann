@@ -8,7 +8,9 @@ const { translate } = useLocale()
       class="mx-auto flex max-w-6xl flex-col gap-10 px-5 md:gap-12 md:px-8 lg:px-0"
     >
       <div class="flex flex-col gap-4">
-        <span class="text-gray/50">{{ translate('contact.label') }}</span>
+        <span class="text-gray/50">
+          {{ translate('contact.label') }}
+        </span>
 
         <h2
           class="text-5xl font-medium tracking-tighter sm:text-6xl lg:text-7xl"
@@ -29,32 +31,35 @@ const { translate } = useLocale()
 
         <div class="flex flex-col items-start gap-4">
           <a
-            class="text-gray/75 flex items-center gap-1 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="https://www.linkedin.com/in/hwilsmann/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             linkedin.com/in/hwilsmann <Arrow />
           </a>
 
           <a
-            class="text-gray/75 flex items-center gap-1 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="https://github.com/hwilsmann"
             target="_blank"
+            rel="noopener noreferrer"
           >
             github.com/hwilsmann <Arrow />
           </a>
 
           <a
-            class="text-gray/75 flex items-center gap-1 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="mailto:hwilsmann83@gmail.com"
-            target="_blank"
           >
             hwilsmann83@gmail.com <Arrow />
           </a>
+
           <a
-            class="text-gray/75 flex items-center gap-1 border-b break-all"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="https://wa.me/5551999044946"
             target="_blank"
+            rel="noopener noreferrer"
           >
             +51 99904-4946 <Arrow />
           </a>

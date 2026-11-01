@@ -165,7 +165,7 @@ function init(el: HTMLElement): boolean {
     geometry,
     new three.PointsMaterial({
       color: CREAM,
-      size: 0.035,
+      size: 0.045,
       map: texture,
       transparent: true,
       opacity: 0.85,

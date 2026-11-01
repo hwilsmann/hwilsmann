@@ -11,35 +11,47 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <header id="header" class="py-8 md:py-12">
+  <header id="header" class="py-4 md:py-12">
     <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 md:px-8 lg:px-0">
       <div class="flex w-full items-center justify-between gap-4">
         <em class="text-xl font-bold tracking-tighter">
           hw <span class="text-primary">.</span>
         </em>
 
-        <nav class="hidden gap-4 md:flex">
-          <a class="flex items-center gap-1 border-b" href="#about"
-            >{{ translate('nav.about') }} <Arrow
-          /></a>
+        <nav aria-label="Navegação principal" class="hidden gap-4 md:flex">
+          <a
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            href="#about"
+          >
+            {{ translate('header.nav.about') }} <Arrow />
+          </a>
 
-          <a class="flex items-center gap-1 border-b" href="#experience"
-            >{{ translate('nav.experience') }} <Arrow
-          /></a>
+          <a
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            href="#experience"
+          >
+            {{ translate('header.nav.experience') }} <Arrow />
+          </a>
 
-          <a class="flex items-center gap-1 border-b" href="#competence"
-            >{{ translate('nav.skills') }} <Arrow
-          /></a>
+          <a
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            href="#competence"
+          >
+            {{ translate('header.nav.skills') }} <Arrow />
+          </a>
 
-          <a class="flex items-center gap-1 border-b" href="#contact"
-            >{{ translate('nav.contact') }} <Arrow
-          /></a>
+          <a
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            href="#contact"
+          >
+            {{ translate('header.nav.contact') }} <Arrow />
+          </a>
         </nav>
 
         <div class="hidden items-center gap-1 rounded-full border p-1 md:flex">
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer rounded-full px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             :class="locale === 'pt' ? 'bg-primary text-white' : ''"
             :aria-pressed="locale === 'pt'"
             @click="setLocale('pt')"
@@ -49,7 +61,7 @@ const closeMenu = () => {
 
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer rounded-full px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             :class="locale === 'en' ? 'bg-primary text-white' : ''"
             :aria-pressed="locale === 'en'"
             @click="setLocale('en')"
@@ -60,9 +72,14 @@ const closeMenu = () => {
 
         <button
           type="button"
-          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border md:hidden"
+          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
+          :aria-label="
+            menuOpen
+              ? translate('header.aria.close')
+              : translate('header.aria.open')
+          "
           @click="menuOpen = !menuOpen"
         >
           <span aria-hidden="true" class="text-xl leading-none">
@@ -76,44 +93,47 @@ const closeMenu = () => {
         id="mobile-menu"
         class="border-gray/10 flex flex-col gap-6 border-t pt-6 md:hidden"
       >
-        <nav class="flex flex-col items-start gap-5">
+        <nav
+          aria-label="Navegação mobile"
+          class="flex flex-col items-start gap-5"
+        >
           <a
-            class="flex items-center gap-1 border-b"
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="#about"
             @click="closeMenu"
           >
-            {{ translate('nav.about') }} <Arrow />
+            {{ translate('header.nav.about') }} <Arrow />
           </a>
 
           <a
-            class="flex items-center gap-1 border-b"
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="#experience"
             @click="closeMenu"
           >
-            {{ translate('nav.experience') }} <Arrow />
+            {{ translate('header.nav.experience') }} <Arrow />
           </a>
 
           <a
-            class="flex items-center gap-1 border-b"
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="#competence"
             @click="closeMenu"
           >
-            {{ translate('nav.skills') }} <Arrow />
+            {{ translate('header.nav.skills') }} <Arrow />
           </a>
 
           <a
-            class="flex items-center gap-1 border-b"
+            class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             href="#contact"
             @click="closeMenu"
           >
-            {{ translate('nav.contact') }} <Arrow />
+            {{ translate('header.nav.contact') }} <Arrow />
           </a>
         </nav>
 
         <div class="flex items-center gap-1 self-start rounded-full border p-1">
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer rounded-full px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             :class="locale === 'pt' ? 'bg-primary text-white' : ''"
             :aria-pressed="locale === 'pt'"
             @click="setLocale('pt')"
@@ -123,7 +143,7 @@ const closeMenu = () => {
 
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer rounded-full px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             :class="locale === 'en' ? 'bg-primary text-white' : ''"
             :aria-pressed="locale === 'en'"
             @click="setLocale('en')"

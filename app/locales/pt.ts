@@ -1,9 +1,15 @@
 export default {
-  nav: {
-    about: 'Sobre',
-    experience: 'Experiência',
-    skills: 'Competência',
-    contact: 'Contato',
+  header: {
+    nav: {
+      about: 'Sobre',
+      experience: 'Experiência',
+      skills: 'Competência',
+      contact: 'Contato',
+    },
+    aria: {
+      open: 'Abrir menu',
+      close: 'Fechar menu',
+    },
   },
 
   hero: {

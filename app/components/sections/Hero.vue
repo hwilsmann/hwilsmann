@@ -11,11 +11,13 @@ const { translate } = useLocale()
         <span class="text-gray/50">{{ translate('hero.label') }}</span>
 
         <div
-          class="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-8 lg:gap-12"
+          class="grid grid-cols-2 items-center gap-5 md:grid-cols-2 md:items-start md:gap-8 lg:gap-12"
         >
-          <div class="flex flex-col items-start gap-8 md:gap-10 lg:gap-12">
+          <div
+            class="contents md:flex md:flex-col md:items-start md:gap-8 lg:gap-12"
+          >
             <h2
-              class="text-5xl font-medium tracking-tighter sm:text-6xl lg:text-7xl"
+              class="col-span-2 text-5xl font-medium tracking-tighter sm:text-6xl md:col-span-1 lg:text-7xl"
             >
               {{ translate('hero.title') }}
               <em class="text-primary">{{ translate('hero.emphasis') }}</em
@@ -23,14 +25,14 @@ const { translate } = useLocale()
             </h2>
 
             <div
-              class="border-gray/10 flex flex-col items-start gap-4 border-t pt-8 md:pt-10 lg:pt-12"
+              class="border-gray/10 col-span-1 flex flex-col items-start gap-4 border-t pt-5 md:pt-8 lg:pt-12"
             >
               <p class="text-gray/75 leading-6">
                 {{ translate('hero.description') }}
               </p>
 
               <a
-                class="text-gray/50 flex items-center gap-1 border-b"
+                class="text-gray/50 flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 href="#about"
               >
                 {{ translate('hero.anchor') }} <Arrow />
@@ -38,9 +40,9 @@ const { translate } = useLocale()
             </div>
           </div>
 
-          <div class="flex flex-col items-start gap-4">
+          <div class="col-span-1 flex flex-col items-start gap-4 md:col-span-1">
             <div
-              class="relative h-80 w-full overflow-hidden sm:h-96 md:h-105 lg:h-125"
+              class="relative h-56 w-full overflow-hidden sm:h-64 md:h-96 md:h-105 lg:h-125"
             >
               <LazySphere />
             </div>
