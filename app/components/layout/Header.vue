@@ -83,7 +83,8 @@ const closeMenu = () => {
           @click="menuOpen = !menuOpen"
         >
           <span aria-hidden="true" class="text-xl leading-none">
-            {{ menuOpen ? '×' : '☰' }}
+            <Close v-if="menuOpen" />
+            <Menu v-else />
           </span>
         </button>
       </div>
