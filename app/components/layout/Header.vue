@@ -4,7 +4,6 @@ import { ref } from 'vue'
 const { locale, setLocale, translate } = useLocale()
 
 const menuOpen = ref(false)
-
 const closeMenu = () => {
   menuOpen.value = false
 }
@@ -28,16 +27,16 @@ const closeMenu = () => {
 
           <a
             class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-            href="#experience"
+            href="#journey"
           >
-            {{ translate('header.nav.experience') }} <Arrow />
+            {{ translate('header.nav.journey') }} <Arrow />
           </a>
 
           <a
             class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-            href="#competence"
+            href="#technology"
           >
-            {{ translate('header.nav.skills') }} <Arrow />
+            {{ translate('header.nav.technology') }} <Arrow />
           </a>
 
           <a
@@ -108,18 +107,18 @@ const closeMenu = () => {
 
           <a
             class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-            href="#experience"
+            href="#journey"
             @click="closeMenu"
           >
-            {{ translate('header.nav.experience') }} <Arrow />
+            {{ translate('header.nav.journey') }} <Arrow />
           </a>
 
           <a
             class="flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-            href="#competence"
+            href="#technology"
             @click="closeMenu"
           >
-            {{ translate('header.nav.skills') }} <Arrow />
+            {{ translate('header.nav.technology') }} <Arrow />
           </a>
 
           <a

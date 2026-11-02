@@ -2,9 +2,9 @@ export default {
   header: {
     nav: {
       about: 'Sobre',
-      experience: 'Experiência',
-      skills: 'Competência',
-      contact: 'Contato',
+      journey: 'Trajetória',
+      technology: 'Tecnologia',
+      contact: 'Vamos conversar',
     },
     aria: {
       open: 'Abrir menu',
@@ -59,13 +59,13 @@ export default {
     ],
   },
 
-  experience: {
-    label: '03 — Experiência',
+  journey: {
+    label: '03 — Trajetória',
     title: {
       first: 'Cada passo',
       second: 'uma nova perspectiva',
     },
-    experiences: [
+    journeys: [
       {
         period: '2024 — Presente',
         company: 'Sesiom',
@@ -92,7 +92,7 @@ export default {
           'Participação em decisões técnicas, arquitetura Front-end e code reviews.',
           'Implementação de funcionalidades voltadas à conversão, usabilidade e experiência do usuário.',
           'Integração com APIs e serviços da plataforma, garantindo consistência e escalabilidade.',
-          'Aplicação de boas práticas de SEO técnico e acessibilidade digital (WCAG). APIs',
+          'Aplicação de boas práticas de SEO técnico e acessibilidade digital (WCAG).',
         ],
       },
       {
@@ -122,41 +122,46 @@ export default {
     ],
   },
 
-  skills: {
-    label: '04 — Competências',
+  technology: {
+    label: '04 — Tecnologia',
     title: {
       first: 'Minhas',
-      second: 'Competências',
+      second: 'Especialidades',
     },
     competencies: [
       {
-        title: 'Desenvolvimento & tecnologias',
+        title: 'Desenvolvimento Front-end',
         skills: [
           'Vue.js',
           'Nuxt',
           'React',
+          'Next.js',
           'TypeScript',
           'JavaScript',
-          'ASP.NET',
-          'Liquid',
-          'HTML',
-          'CSS',
+          'HTML5',
+          'CSS3',
           'Sass',
           'Tailwind CSS',
-          'REST APIs',
+          'Liquid',
         ],
       },
       {
-        title: 'Ferramentas & otimização',
-        skills: ['Git', 'Figma', 'SEO', 'Web Performance', 'Core Web Vitals'],
+        title: 'Back-end & Banco de Dados',
+        skills: ['ASP.NET', 'APIs REST', 'PostgreSQL', 'Prisma ORM'],
       },
       {
-        title: 'Práticas & qualidade',
+        title: 'Ferramentas, Performance & Qualidade',
         skills: [
-          'Responsive Design',
-          'Cross-browser Compatibility',
-          'Acessibilidade',
-          'Clean Code',
+          'Git',
+          'Figma',
+          'Arquitetura de Componentes',
+          'Código Limpo',
+          'Design Responsivo',
+          'Acessibilidade Web',
+          'Compatibilidade entre Navegadores',
+          'Otimização de Performance',
+          'Core Web Vitals',
+          'SEO',
         ],
       },
     ],

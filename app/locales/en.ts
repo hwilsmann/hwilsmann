@@ -2,9 +2,9 @@ export default {
   header: {
     nav: {
       about: 'About',
-      experience: 'Experience',
-      skills: 'Skill',
-      contact: 'Contact',
+      journey: 'Journey',
+      technology: 'Technology',
+      contact: "Let's Talk",
     },
     aria: {
       open: 'Open menu',
@@ -59,13 +59,13 @@ export default {
     ],
   },
 
-  experience: {
-    label: '03 — Experience',
+  journey: {
+    label: '03 — Journey',
     title: {
       first: 'Every step',
       second: 'a new perspective',
     },
-    experiences: [
+    journeys: [
       {
         period: '2024 — Present',
         company: 'Sesiom',
@@ -74,7 +74,7 @@ export default {
         highlights: [
           'Development and enhancement of an internal enterprise system in a legacy ASP and JavaScript environment, focusing on code quality, web performance, and user experience.',
           'Implementation of new features and continuous improvements aligned with business rules and client needs.',
-          'Integration with internal APIs and services for data consumption and manipulation.',
+          'Integration with internal APIs and services to retrieve and process data.',
           'Performance optimization through reduced requests, improved queries, and code refactoring, resulting in faster load times.',
           'Application of code organization and maintainability best practices in a legacy environment.',
           'Collaboration with back-end teams to analyze requirements and define technical solutions.',
@@ -122,41 +122,46 @@ export default {
     ],
   },
 
-  skills: {
-    label: '04 — Skills',
+  technology: {
+    label: '04 — Technology',
     title: {
       first: 'My',
-      second: 'Skills',
+      second: 'Expertise',
     },
     competencies: [
       {
-        title: 'Development & Technologies',
+        title: 'Front-end Development',
         skills: [
           'Vue.js',
           'Nuxt',
           'React',
+          'Next.js',
           'TypeScript',
           'JavaScript',
-          'ASP.NET',
-          'Liquid',
-          'HTML',
-          'CSS',
+          'HTML5',
+          'CSS3',
           'Sass',
           'Tailwind CSS',
-          'REST APIs',
+          'Liquid',
         ],
       },
       {
-        title: 'Tools & Optimization',
-        skills: ['Git', 'Figma', 'SEO', 'Web Performance', 'Core Web Vitals'],
+        title: 'Back-end & Databases',
+        skills: ['ASP.NET', 'REST APIs', 'PostgreSQL', 'Prisma ORM'],
       },
       {
-        title: 'Practices & Quality',
+        title: 'Tools, Performance & Quality',
         skills: [
-          'Responsive Design',
-          'Cross-browser Compatibility',
-          'Accessibility',
+          'Git',
+          'Figma',
+          'Component-Based Architecture',
           'Clean Code',
+          'Responsive Design',
+          'Web Accessibility',
+          'Cross-browser Compatibility',
+          'Web Performance Optimization',
+          'Core Web Vitals',
+          'SEO',
         ],
       },
     ],
