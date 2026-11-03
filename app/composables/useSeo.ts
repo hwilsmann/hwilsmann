@@ -9,10 +9,6 @@ export const useSeo = () => {
       'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
     ogType: 'website',
     ogLocale: 'pt_BR',
-    twitterCard: 'summary_large_image',
-    twitterTitle: 'Henrique Wilsmann — Desenvolvedor Front-end',
-    twitterDescription:
-      'Desenvolvedor Front-end com mais de 11 anos de experiência em desenvolvimento web, com experiência sólida em Vue.js, Nuxt, TypeScript, JavaScript e Tailwind CSS. Atuo no desenvolvimento e evolução de aplicações web, com foco em arquitetura front-end, componentes reutilizáveis, performance, acessibilidade, UX e integração com APIs REST. Busco construir interfaces consistentes, escaláveis e sustentáveis, equilibrando qualidade técnica, boas práticas de engenharia e uma experiência intuitiva para o usuário.',
   })
 
   useHead({
@@ -46,15 +42,31 @@ export const useSeo = () => {
         'Desenvolvimento Front-end',
         'Vue.js',
         'Nuxt',
+        'React',
+        'Next.js',
         'TypeScript',
         'JavaScript',
+        'HTML5',
+        'CSS3',
+        'Sass',
         'Tailwind CSS',
-        'Arquitetura Front-end',
-        'Design Systems',
-        'Performance Web',
+        'Liquid',
+
+        'ASP.NET',
+        'APIs REST',
+        'PostgreSQL',
+        'Prisma ORM',
+
+        'Git',
+        'Figma',
+        'Arquitetura de Componentes',
+        'Código Limpo',
+        'Design Responsivo',
         'Acessibilidade Web',
-        'Integração com APIs',
-        'Desenvolvimento de Interfaces Web',
+        'Compatibilidade entre Navegadores',
+        'Otimização de Performance',
+        'Core Web Vitals',
+        'SEO',
       ],
     },
   ])

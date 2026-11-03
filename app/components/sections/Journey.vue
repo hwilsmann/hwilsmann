@@ -4,15 +4,7 @@ import pt from '~/locales/pt'
 
 const { translate, locale } = useLocale()
 
-type Journey = {
-  period: string
-  company: string
-  workload: string
-  location: string
-  highlights: readonly string[]
-}
-
-const journeys = computed<readonly Journey[]>(() => {
+const journeys = computed(() => {
   return locale.value === 'en' ? en.journey.journeys : pt.journey.journeys
 })
 </script>

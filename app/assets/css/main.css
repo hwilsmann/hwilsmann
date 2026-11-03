@@ -21,4 +21,31 @@
   body {
     @apply bg-dark-gray text-gray font-sans text-xs;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-darken-gray);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 999px;
+    border: 1px solid var(--color-darken-gray);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00c9a2;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--color-darken-gray);
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-black);
+  }
 }
