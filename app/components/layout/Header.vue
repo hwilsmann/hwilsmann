@@ -10,7 +10,7 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <header id="header" class="py-4 md:py-12">
+  <header id="header" class="bg-dark-gray sticky top-0 left-0 z-1 py-4 md:py-8">
     <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 md:px-8 lg:px-0">
       <div class="flex w-full items-center justify-between gap-4">
         <em class="text-xl font-bold tracking-tighter">
