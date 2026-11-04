@@ -24,12 +24,15 @@ let texture: ThreeTypes.CanvasTexture | undefined
 let ro: ResizeObserver | undefined
 
 let raf = 0
-let retryFrame = 0
 let last = 0
 let spin = 0
+
 let disposed = false
 let initialized = false
 let initializing = false
+let initializationStarted = false
+let initializationFailed = false
+let contextLost = false
 
 const pointer = { x: 0, y: 0 }
 const smooth = { x: 0, y: 0 }
@@ -107,7 +110,9 @@ function init(el: HTMLElement): boolean {
   const width = el.clientWidth
   const height = el.clientHeight
 
-  if (width <= 0 || height <= 0) return false
+  if (width <= 0 || height <= 0) {
+    return false
+  }
 
   scene = new three.Scene()
 
@@ -120,12 +125,9 @@ function init(el: HTMLElement): boolean {
       antialias: true,
       alpha: true,
     })
-  } catch (error) {
-    console.error('Sphere: falha ao criar o contexto WebGL.', error)
-
+  } catch {
     scene = undefined
     camera = undefined
-
     return false
   }
 
@@ -140,6 +142,7 @@ function init(el: HTMLElement): boolean {
 
   group = new three.Group()
   group.rotation.x = 0.35
+
   scene.add(group)
 
   const positions = new Float32Array(COUNT * 3)
@@ -175,6 +178,7 @@ function init(el: HTMLElement): boolean {
   )
 
   group.add(points)
+
   group.add(
     createRing(0, 0),
     createRing(Math.PI / 2, 0),
@@ -183,7 +187,9 @@ function init(el: HTMLElement): boolean {
 
   const accent = new three.Mesh(
     new three.SphereGeometry(0.04, 16, 16),
-    new three.MeshBasicMaterial({ color: GREEN }),
+    new three.MeshBasicMaterial({
+      color: GREEN,
+    }),
   )
 
   accent.position
@@ -201,7 +207,15 @@ function init(el: HTMLElement): boolean {
 function tick(now: number) {
   raf = 0
 
-  if (disposed || !renderer || !scene || !camera || !group || document.hidden) {
+  if (
+    disposed ||
+    contextLost ||
+    !renderer ||
+    !scene ||
+    !camera ||
+    !group ||
+    document.hidden
+  ) {
     return
   }
 
@@ -224,6 +238,7 @@ function tick(now: number) {
 function startAnimation() {
   if (
     disposed ||
+    contextLost ||
     raf ||
     !renderer ||
     !scene ||
@@ -272,9 +287,21 @@ function onPointerLeave() {
 }
 
 function onResize() {
+  if (disposed) return
+
   const el = container.value
 
-  if (!el || !renderer || !camera || !scene) return
+  if (!el) return
+
+  if (!initialized) {
+    if (initializationStarted && !initializationFailed) {
+      void initializeWhenReady()
+    }
+
+    return
+  }
+
+  if (!renderer || !camera || !scene) return
 
   const width = el.clientWidth
   const height = el.clientHeight
@@ -287,7 +314,30 @@ function onResize() {
 
   updatePixelRatio()
   renderer.setSize(width, height)
+
+  if (!contextLost) {
+    renderer.render(scene, camera)
+  }
+}
+
+function onContextLost(event: Event) {
+  event.preventDefault()
+
+  contextLost = true
+
+  stopAnimation()
+}
+
+function onContextRestored() {
+  if (disposed || !renderer || !scene || !camera) {
+    return
+  }
+
+  contextLost = false
+
   renderer.render(scene, camera)
+
+  startAnimation()
 }
 
 function onVisibilityChange() {
@@ -299,9 +349,12 @@ function onVisibilityChange() {
 }
 
 async function initializeWhenReady() {
-  if (disposed || initialized || initializing) return
+  if (disposed || initialized || initializing || initializationFailed) {
+    return
+  }
 
   initializing = true
+  initializationStarted = true
 
   try {
     await nextTick()
@@ -309,14 +362,10 @@ async function initializeWhenReady() {
     if (disposed) return
 
     const el = container.value
+
     if (!el) return
 
     if (el.clientWidth <= 0 || el.clientHeight <= 0) {
-      retryFrame = requestAnimationFrame(() => {
-        retryFrame = 0
-        void initializeWhenReady()
-      })
-
       return
     }
 
@@ -326,37 +375,42 @@ async function initializeWhenReady() {
 
     if (disposed) return
 
-    if (!init(el)) {
-      retryFrame = requestAnimationFrame(() => {
-        retryFrame = 0
-        void initializeWhenReady()
-      })
+    const success = init(el)
 
+    if (!success) {
+      initializationFailed = true
       return
     }
 
     initialized = true
 
-    el.addEventListener('pointermove', onPointerMove, {
-      passive: true,
-    })
+    el.addEventListener('pointermove', onPointerMove, { passive: true })
 
     el.addEventListener('pointerleave', onPointerLeave)
 
-    ro = new ResizeObserver(onResize)
-    ro.observe(el)
+    renderer?.domElement.addEventListener('webglcontextlost', onContextLost)
+
+    renderer?.domElement.addEventListener(
+      'webglcontextrestored',
+      onContextRestored,
+    )
 
     document.addEventListener('visibilitychange', onVisibilityChange)
 
     startAnimation()
-  } catch (error) {
-    console.error('Sphere: falha ao inicializar a cena.', error)
+  } catch {
+    initializationFailed = true
   } finally {
     initializing = false
   }
 }
 
 onMounted(() => {
+  if (container.value) {
+    ro = new ResizeObserver(onResize)
+    ro.observe(container.value)
+  }
+
   if (typeof window.requestIdleCallback === 'function') {
     idleCallback = window.requestIdleCallback(
       () => {
@@ -386,25 +440,31 @@ onBeforeUnmount(() => {
     idleTimeout = undefined
   }
 
-  cancelAnimationFrame(retryFrame)
   stopAnimation()
 
   const el = container.value
 
   el?.removeEventListener('pointermove', onPointerMove)
+
   el?.removeEventListener('pointerleave', onPointerLeave)
 
   document.removeEventListener('visibilitychange', onVisibilityChange)
+
+  renderer?.domElement.removeEventListener('webglcontextlost', onContextLost)
+
+  renderer?.domElement.removeEventListener(
+    'webglcontextrestored',
+    onContextRestored,
+  )
 
   ro?.disconnect()
   ro = undefined
 
   scene?.traverse((object) => {
     if (
-      object instanceof Object &&
-      (object.type === 'Mesh' ||
-        object.type === 'Points' ||
-        object.type === 'LineLoop')
+      object.type === 'Mesh' ||
+      object.type === 'Points' ||
+      object.type === 'LineLoop'
     ) {
       const renderable = object as
         ThreeTypes.Mesh | ThreeTypes.Points | ThreeTypes.LineLoop
@@ -415,11 +475,14 @@ onBeforeUnmount(() => {
         ? renderable.material
         : [renderable.material]
 
-      materials.forEach((material) => material.dispose())
+      materials.forEach((material) => {
+        material.dispose()
+      })
     }
   })
 
   texture?.dispose()
+
   renderer?.dispose()
   renderer?.domElement.remove()
 
