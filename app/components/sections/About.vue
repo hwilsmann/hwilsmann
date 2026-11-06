@@ -45,7 +45,7 @@ const { translate } = useLocale()
 
             <div class="flex flex-wrap gap-x-4 gap-y-2">
               <a
-                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://www.linkedin.com/in/hwilsmann/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,7 +54,7 @@ const { translate } = useLocale()
               </a>
 
               <a
-                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://github.com/hwilsmann"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -63,14 +63,14 @@ const { translate } = useLocale()
               </a>
 
               <a
-                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="mailto:hwilsmann83@gmail.com"
               >
                 {{ translate('about.anchor.email') }} <Arrow />
               </a>
 
               <a
-                class="text-dark-gray focus-visible:outline-dark-gray flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4"
+                class="text-dark-gray flex items-center gap-1 border-b"
                 href="https://wa.me/5551999044946"
                 target="_blank"
                 rel="noopener noreferrer"

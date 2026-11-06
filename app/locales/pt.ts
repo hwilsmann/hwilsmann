@@ -6,10 +6,6 @@ export default {
       technology: 'Tecnologia',
       contact: 'Vamos conversar',
     },
-    aria: {
-      open: 'Abrir menu',
-      close: 'Fechar menu',
-    },
   },
 
   hero: {
@@ -180,5 +176,17 @@ export default {
   footer: {
     copyright: 'Todos os direitos reservados.',
     anchor: 'Voltar ao topo',
+  },
+
+  error: {
+    label: '06 — Página não encontrada',
+    title: 'Nem todo caminho leva a',
+    emphasis: 'algum lugar',
+    description:
+      'Essa rota não existe por aqui. Volte ao início ou me chame para conversar sobre o seu projeto.',
+    anchor: {
+      first: 'Voltar ao início',
+      second: 'Vamos conversar',
+    },
   },
 } as const

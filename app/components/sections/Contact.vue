@@ -31,7 +31,7 @@ const { translate } = useLocale()
 
         <div class="flex flex-col items-start gap-4">
           <a
-            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all"
             href="https://www.linkedin.com/in/hwilsmann/"
             target="_blank"
             rel="noopener noreferrer"
@@ -40,7 +40,7 @@ const { translate } = useLocale()
           </a>
 
           <a
-            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all"
             href="https://github.com/hwilsmann"
             target="_blank"
             rel="noopener noreferrer"
@@ -49,14 +49,14 @@ const { translate } = useLocale()
           </a>
 
           <a
-            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all"
             href="mailto:hwilsmann83@gmail.com"
           >
             hwilsmann83@gmail.com <Arrow />
           </a>
 
           <a
-            class="text-gray/75 flex items-center gap-1 border-b border-current break-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            class="text-gray/75 flex items-center gap-1 border-b border-current break-all"
             href="https://wa.me/5551999044946"
             target="_blank"
             rel="noopener noreferrer"

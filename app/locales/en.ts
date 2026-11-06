@@ -6,10 +6,6 @@ export default {
       technology: 'Technology',
       contact: "Let's Talk",
     },
-    aria: {
-      open: 'Open menu',
-      close: 'Close menu',
-    },
   },
 
   hero: {
@@ -180,5 +176,17 @@ export default {
   footer: {
     copyright: 'All rights reserved.',
     anchor: 'Back to top',
+  },
+
+  error: {
+    label: '06 — Page not found',
+    title: 'Not every path leads to',
+    emphasis: 'somewhere',
+    description:
+      "This route doesn't exist. Go back to the homepage or get in touch to discuss your project.",
+    anchor: {
+      first: 'Back to homepage',
+      second: "Let's talk",
+    },
   },
 } as const

@@ -32,7 +32,7 @@ const { translate } = useLocale()
               </p>
 
               <a
-                class="text-gray/50 flex items-center gap-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                class="text-gray/50 flex items-center gap-1 border-b"
                 href="#about"
               >
                 {{ translate('hero.anchor') }} <Arrow />
