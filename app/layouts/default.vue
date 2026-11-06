@@ -6,13 +6,11 @@ const error = useError()
 </script>
 
 <template>
-  <div>
-    <Header :error-page="Boolean(error)" />
+  <Header :error-page="Boolean(error)" />
 
-    <main>
-      <slot />
-    </main>
+  <main id="main">
+    <slot />
+  </main>
 
-    <Footer />
-  </div>
+  <Footer />
 </template>

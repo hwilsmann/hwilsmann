@@ -18,7 +18,7 @@ const { translate } = useLocale()
 
       <a
         class="text-gray/50 flex items-center gap-1 border-b text-[0.625rem]"
-        href="#header"
+        href="#root"
       >
         {{ translate('footer.anchor') }} <Arrow />
       </a>

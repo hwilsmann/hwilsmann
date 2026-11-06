@@ -9,11 +9,9 @@ useSeo()
 </script>
 
 <template>
-  <div>
-    <Hero />
-    <About />
-    <Journey />
-    <Technology />
-    <Contact />
-  </div>
+  <Hero />
+  <About />
+  <Journey />
+  <Technology />
+  <Contact />
 </template>
