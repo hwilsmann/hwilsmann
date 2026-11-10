@@ -3,48 +3,48 @@ const { translate } = useLocale()
 </script>
 
 <template>
-  <section id="hero" class="bg-darken-gray py-20 md:py-28 lg:py-36">
+  <section id="hero" class="bg-darken-gray py-16 sm:py-20 md:py-28 lg:py-36">
     <div
-      class="mx-auto flex max-w-6xl flex-col gap-10 px-5 md:gap-12 md:px-8 lg:px-0"
+      class="mx-auto flex max-w-6xl flex-col gap-10 px-5 sm:gap-10 md:gap-12 md:px-8 lg:px-0"
     >
-      <div class="flex flex-col gap-4">
-        <span class="text-gray/50">{{ translate('hero.label') }}</span>
+      <div class="flex min-w-0 flex-col gap-4">
+        <span class="text-gray/50">
+          {{ translate('hero.label') }}
+        </span>
 
         <div
-          class="grid grid-cols-2 items-center gap-5 md:grid-cols-2 md:items-start md:gap-8 lg:gap-12"
+          class="grid min-w-0 grid-cols-1 items-center gap-8 md:grid-cols-2 md:items-start md:gap-8 lg:gap-12"
         >
-          <div
-            class="contents md:flex md:flex-col md:items-start md:gap-8 lg:gap-12"
-          >
+          <div class="flex min-w-0 flex-col gap-8 lg:gap-12">
             <h2
-              class="col-span-2 text-5xl font-medium tracking-tighter sm:text-6xl md:col-span-1 lg:text-7xl"
+              class="text-4xl font-medium tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
             >
               {{ translate('hero.title') }}
-              <em class="text-primary">{{ translate('hero.emphasis') }}</em
-              >.
+              <em class="text-primary"> {{ translate('hero.emphasis') }} </em>.
             </h2>
 
             <div
-              class="border-gray/10 col-span-1 flex flex-col items-start gap-4 border-t pt-5 md:pt-8 lg:pt-12"
+              class="border-gray/10 flex flex-col items-start gap-4 border-t pt-5 md:pt-8 lg:pt-12"
             >
               <p class="text-gray/75 leading-6">
                 {{ translate('hero.description') }}
               </p>
 
               <a
-                class="text-gray/50 flex items-center gap-1 border-b"
                 href="#about"
+                class="border-gray/50 text-gray/50 flex items-center gap-1 border-b"
               >
-                {{ translate('hero.anchor') }} <Arrow />
+                {{ translate('hero.anchor') }}
+                <Arrow />
               </a>
             </div>
           </div>
 
-          <div class="col-span-1 flex flex-col items-start gap-4 md:col-span-1">
+          <div class="flex min-w-0 flex-col items-start">
             <div
-              class="relative h-56 w-full overflow-hidden sm:h-64 md:h-96 md:h-105 lg:h-125"
+              class="relative h-80 w-full overflow-hidden sm:h-95 md:h-105 lg:h-125"
             >
-              <LazySphere />
+              <HeroCodeScreen />
             </div>
           </div>
         </div>
