@@ -78,7 +78,7 @@ function createLines(): Line[] {
       ['= {', 'property'],
     ],
     [
-      [`  ${translate('screen.specialtyLabel')}:`, 'text'],
+      [`  ${translate('screen.specialtyLabel')}: `, 'text'],
       [`'${translate('screen.specialty')}'`, 'string'],
       [',', 'property'],
     ],
@@ -187,7 +187,9 @@ function drawWindowHeader(context: CanvasRenderingContext2D, width: number) {
     context.fill()
   })
 
-  context.font = '1.5rem Ubuntu, system-ui, sans-serif'
+  const isMobile = window.matchMedia('(max-width: 767px)').matches
+  context.font = `${isMobile ? 2.25 : 1.875}rem Ubuntu, system-ui, sans-serif`
+
   context.fillStyle = COLORS.gray
   context.fillText('hw.ts', 160, 60)
 
@@ -209,7 +211,8 @@ function drawCode(
   let cursorY = CONFIG.initialLineY
   let cursorFound = false
 
-  context.font = '1.5rem Ubuntu, system-ui, sans-serif'
+  const isMobile = window.matchMedia('(max-width: 767px)').matches
+  context.font = `${isMobile ? 2.25 : 1.875}rem Ubuntu, system-ui, sans-serif`
 
   LINES.forEach((line, index) => {
     const y = CONFIG.initialLineY + index * CONFIG.lineHeight
