@@ -330,7 +330,14 @@ function createScene(mainTexture: CanvasTexture, fadeTexture: CanvasTexture) {
   reflection.position.y = -2.55
 
   group.add(panel, reflection)
-  group.rotation.set(-0.18, -0.32, 0)
+
+  const isMobile = window.matchMedia('(max-width: 767px)').matches
+
+  if (isMobile) {
+    group.rotation.set(0, 0, 0)
+  } else {
+    group.rotation.set(-0.18, -0.32, 0)
+  }
 
   scene.add(group)
 
