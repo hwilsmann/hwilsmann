@@ -3,7 +3,7 @@
 @source '../../error.vue';
 
 @theme {
-  --font-sans: Ubuntu, 'Ubuntu Fallback', system-ui, sans-serif;
+  --font-sans: Ubuntu, system-ui, sans-serif;
 
   --color-black: #000000;
   --color-white: #ffffff;

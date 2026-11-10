@@ -35,10 +35,10 @@ defineProps<{
           </a>
         </nav>
 
-        <div class="hidden items-center gap-1 rounded-full border p-1 md:flex">
+        <div class="hidden items-center gap-1 border p-1 md:flex">
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer px-4 py-2"
             :class="locale === 'pt' ? 'bg-primary text-white' : ''"
             @click="(setLocale('pt'), (menuOpen = false))"
           >
@@ -47,7 +47,7 @@ defineProps<{
 
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer px-4 py-2"
             :class="locale === 'en' ? 'bg-primary text-white' : ''"
             @click="(setLocale('en'), (menuOpen = false))"
           >
@@ -57,7 +57,7 @@ defineProps<{
 
         <button
           type="button"
-          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border md:hidden"
+          class="flex h-10 w-10 cursor-pointer items-center justify-center border md:hidden"
           @click="menuOpen = !menuOpen"
         >
           <span class="text-xl">
@@ -105,10 +105,10 @@ defineProps<{
           </a>
         </nav>
 
-        <div class="flex items-center gap-1 self-start rounded-full border p-1">
+        <div class="flex items-center gap-1 self-start border p-1">
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer px-4 py-2"
             :class="locale === 'pt' ? 'bg-primary text-white' : ''"
             @click="(setLocale('pt'), (menuOpen = false))"
           >
@@ -117,7 +117,7 @@ defineProps<{
 
           <button
             type="button"
-            class="cursor-pointer rounded-full px-4 py-2"
+            class="cursor-pointer px-4 py-2"
             :class="locale === 'en' ? 'bg-primary text-white' : ''"
             @click="(setLocale('en'), (menuOpen = false))"
           >

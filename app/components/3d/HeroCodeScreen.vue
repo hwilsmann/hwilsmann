@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-
 import {
   WebGLRenderer,
   Scene,
@@ -17,30 +16,24 @@ import {
 
 const { locale, translate, translateArray } = useLocale()
 
-const props = withDefaults(
-  defineProps<{
-    respectReducedMotion?: boolean
-  }>(),
-  {
-    respectReducedMotion: false,
-  },
-)
+const props = withDefaults(defineProps<{ respectReducedMotion?: boolean }>(), {
+  respectReducedMotion: false,
+})
 
 const host = ref<HTMLDivElement | null>(null)
 
 const COLORS = {
   primary: '#00ab8a',
-  primaryHover: '#00c9a2',
-  black: '#000000',
+  hover: '#00c9a2',
   white: '#ffffff',
   gray: '#ede9df',
-  darkGray: '#292425',
-  darkenGray: '#161515',
+  dark: '#161515',
+  border: '#292425',
 } as const
 
 const TOKEN_COLORS = {
   keyword: COLORS.primary,
-  string: COLORS.primaryHover,
+  string: COLORS.hover,
   property: COLORS.gray,
   text: COLORS.gray,
   comment: 'rgba(237,233,223,0.45)',
@@ -51,24 +44,20 @@ type Token = [string, keyof typeof TOKEN_COLORS]
 type Line = Token[]
 
 const CONFIG = {
-  canvasWidth: 1024,
-  canvasHeight: 820,
+  width: 1024,
+  height: 820,
   panelWidth: 5.2,
   panelHeight: 3.56,
   typingSpeed: 24,
   cursorInterval: 450,
-  cameraPosition: 7.5,
-  lineHeight: 46,
-  initialLineY: 150,
-  initialTextX: 100,
+  lineHeight: 50,
+  textX: 100,
+  lineY: 150,
 }
 
 function createLines(): Line[] {
   const stack = translateArray('screen.stack')
   const actions = translateArray('screen.actions')
-
-  const firstAction = actions[0] ?? 'criar'
-  const secondAction = actions[1] ?? 'transformar'
 
   return [
     [[translate('screen.comment'), 'comment']],
@@ -89,69 +78,43 @@ function createLines(): Line[] {
         [index < stack.length - 1 ? ', ' : '],', 'property'] as Token,
       ]),
     ],
-    [
-      [`  ${translate('screen.languageLabel')}: `, 'text'],
-      [`'${translate('screen.language')}'`, 'string'],
-      [',', 'property'],
-    ],
-    [
-      [`  ${translate('screen.architectureLabel')}: `, 'text'],
-      [`'${translate('screen.architecture')}'`, 'string'],
-      [',', 'property'],
-    ],
-    [
-      [`  ${translate('screen.qualityLabel')}: `, 'text'],
-      [`'${translate('screen.quality')}'`, 'string'],
-      [',', 'property'],
-    ],
-    [
-      [`  ${translate('screen.experienceLabel')}: `, 'text'],
-      [`'${translate('screen.experience')}'`, 'string'],
-      [',', 'property'],
-    ],
-    [
-      [`  ${translate('screen.performanceLabel')}: `, 'text'],
-      [`'${translate('screen.performance')}'`, 'string'],
-      [',', 'property'],
-    ],
+    ...(
+      [
+        'language',
+        'architecture',
+        'quality',
+        'experience',
+        'performance',
+      ] as const
+    ).map(
+      (key) =>
+        [
+          [`  ${translate(`screen.${key}Label`)}: `, 'text'],
+          [`'${translate(`screen.${key}`)}'`, 'string'],
+          [',', 'property'],
+        ] as Line,
+    ),
     [['}', 'property']],
     [['', 'text']],
-    [
-      ['hwilsmann.', 'text'],
-      [firstAction, 'function'],
-      ['();', 'property'],
-    ],
-    [
-      ['hwilsmann.', 'text'],
-      [secondAction, 'function'],
-      ['();', 'property'],
-    ],
+    ...actions.slice(0, 2).map(
+      (action) =>
+        [
+          ['hwilsmann.', 'text'],
+          [action, 'function'],
+          ['();', 'property'],
+        ] as Line,
+    ),
   ]
 }
 
-let LINES: Line[] = createLines()
-
-const TOTAL_CHARACTERS = () =>
-  LINES.reduce(
-    (total, line) =>
-      total + line.reduce((sum, token) => sum + token[0].length, 0) + 1,
-    0,
-  )
-
-let raf = 0
-let cleanup: (() => void) | null = null
-let disposed = false
-
 function createCanvas(width: number, height: number) {
   const canvas = document.createElement('canvas')
-
   canvas.width = width
   canvas.height = height
 
   const context = canvas.getContext('2d')
-
   if (!context) {
-    throw new Error('Não foi possível criar o contexto 2D.')
+    throw new Error()
   }
 
   const texture = new CanvasTexture(canvas)
@@ -160,102 +123,57 @@ function createCanvas(width: number, height: number) {
   return { canvas, context, texture }
 }
 
-function drawRoundedRectangle(
-  context: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-  radius: number,
-) {
-  context.beginPath()
-  context.moveTo(x + radius, y)
-  context.arcTo(x + width, y, x + width, y + height, radius)
-  context.arcTo(x + width, y + height, x, y + height, radius)
-  context.arcTo(x, y + height, x, y, radius)
-  context.arcTo(x, y, x + width, y, radius)
-  context.closePath()
-}
-
-function drawWindowHeader(context: CanvasRenderingContext2D, width: number) {
-  const buttons = ['#ff5f57', '#febc2e', '#28c840']
-
-  buttons.forEach((color, index) => {
-    context.fillStyle = color
-    context.beginPath()
-    context.arc(48 + index * 30, 52, 9, 0, Math.PI * 2)
-    context.fill()
-  })
-
-  const isMobile = window.matchMedia('(max-width: 767px)').matches
-  context.font = `${isMobile ? 2.25 : 1.875}rem Ubuntu, system-ui, sans-serif`
-
-  context.fillStyle = COLORS.gray
-  context.fillText('hw.ts', 160, 60)
-
-  context.strokeStyle = COLORS.darkGray
-  context.lineWidth = 1
-  context.beginPath()
-  context.moveTo(6, 92)
-  context.lineTo(width - 6, 92)
-  context.stroke()
-}
-
 function drawCode(
   context: CanvasRenderingContext2D,
+  lines: Line[],
   visibleCharacters: number,
   cursorVisible: boolean,
 ) {
-  let lineStart = 0
-  let cursorX = CONFIG.initialTextX
-  let cursorY = CONFIG.initialLineY
+  let offset = 0
+  let cursorX = CONFIG.textX
+  let cursorY = CONFIG.lineY
   let cursorFound = false
 
-  const isMobile = window.matchMedia('(max-width: 767px)').matches
-  context.font = `${isMobile ? 2.25 : 1.875}rem Ubuntu, system-ui, sans-serif`
+  context.font = `${window.innerWidth < 768 ? 36 : 30}px Ubuntu, system-ui, sans-serif`
 
-  LINES.forEach((line, index) => {
-    const y = CONFIG.initialLineY + index * CONFIG.lineHeight
+  lines.forEach((line, index) => {
+    const y = CONFIG.lineY + index * CONFIG.lineHeight
+    const length = line.reduce((sum, token) => sum + token[0].length, 0)
+    const visible = Math.max(0, Math.min(length, visibleCharacters - offset))
 
     context.fillStyle = COLORS.gray
     context.globalAlpha = 0.4
     context.fillText(String(index + 1).padStart(2, ' '), 40, y)
     context.globalAlpha = 1
 
-    const lineLength = line.reduce((sum, token) => sum + token[0].length, 0)
-
-    const visibleInLine = Math.max(
-      0,
-      Math.min(lineLength, visibleCharacters - lineStart),
-    )
-
+    let x = CONFIG.textX
     let consumed = 0
-    let x = CONFIG.initialTextX
 
     for (const [text, color] of line) {
-      const available = Math.max(0, visibleInLine - consumed)
-      const part = text.slice(0, Math.min(text.length, available))
+      const part = text.slice(
+        0,
+        Math.max(0, Math.min(text.length, visible - consumed)),
+      )
 
       context.fillStyle = TOKEN_COLORS[color]
       context.fillText(part, x, y)
-
       x += context.measureText(part).width
       consumed += text.length
 
-      if (consumed >= visibleInLine) break
+      if (consumed >= visible) break
     }
 
     if (
       !cursorFound &&
-      visibleCharacters >= lineStart &&
-      visibleCharacters <= lineStart + lineLength
+      visibleCharacters >= offset &&
+      visibleCharacters <= offset + length
     ) {
       cursorX = x
       cursorY = y
       cursorFound = true
     }
 
-    lineStart += lineLength + 1
+    offset += length + 1
   })
 
   if (cursorVisible) {
@@ -264,107 +182,48 @@ function drawCode(
   }
 }
 
-function drawMainCanvas(
-  canvasData: ReturnType<typeof createCanvas>,
+function drawPanel(
+  data: ReturnType<typeof createCanvas>,
+  lines: Line[],
   characters: number,
-  cursorVisible: boolean,
+  cursor: boolean,
 ) {
-  const { canvas, context } = canvasData
-  const visibleCharacters = Math.max(
-    0,
-    Math.min(characters, TOTAL_CHARACTERS()),
-  )
+  const { canvas, context, texture } = data
 
   context.clearRect(0, 0, canvas.width, canvas.height)
 
-  drawRoundedRectangle(context, 6, 6, canvas.width - 12, canvas.height - 12, 28)
-
-  context.fillStyle = COLORS.darkenGray
+  context.beginPath()
+  context.rect(6, 6, canvas.width - 12, canvas.height - 12)
+  context.fillStyle = COLORS.dark
   context.fill()
-
   context.strokeStyle = COLORS.primary
   context.lineWidth = 2
   context.stroke()
 
-  drawWindowHeader(context, canvas.width)
-  drawCode(context, visibleCharacters, cursorVisible)
-
-  canvasData.texture.needsUpdate = true
-}
-
-function createReflection() {
-  const fade = createCanvas(8, 256)
-  const gradient = fade.context.createLinearGradient(0, 0, 0, 256)
-
-  gradient.addColorStop(0, '#000')
-  gradient.addColorStop(1, '#aaa')
-
-  fade.context.fillStyle = gradient
-  fade.context.fillRect(0, 0, 8, 256)
-  fade.texture.colorSpace = NoColorSpace
-  fade.texture.needsUpdate = true
-
-  return fade
-}
-
-function createScene(mainTexture: CanvasTexture, fadeTexture: CanvasTexture) {
-  const scene = new Scene()
-  const group = new Group()
-  const geometry = new PlaneGeometry(CONFIG.panelWidth, CONFIG.panelHeight)
-
-  const panelMaterial = new MeshBasicMaterial({
-    map: mainTexture,
-    transparent: true,
+  ;['#ff5f57', '#febc2e', '#28c840'].forEach((color, index) => {
+    context.beginPath()
+    context.arc(48 + index * 30, 52, 9, 0, Math.PI * 2)
+    context.fillStyle = color
+    context.fill()
   })
 
-  const reflectionMaterial = new MeshBasicMaterial({
-    map: mainTexture,
-    alphaMap: fadeTexture,
-    transparent: true,
-    opacity: 0.45,
-    side: DoubleSide,
-    depthWrite: false,
-  })
+  context.font = '30px Ubuntu, system-ui, sans-serif'
+  context.fillStyle = COLORS.gray
+  context.fillText('hw.ts', 160, 60)
 
-  const panel = new Mesh(geometry, panelMaterial)
-  const reflection = new Mesh(geometry, reflectionMaterial)
+  context.strokeStyle = COLORS.border
+  context.beginPath()
+  context.moveTo(6, 92)
+  context.lineTo(canvas.width - 6, 92)
+  context.stroke()
 
-  reflection.scale.y = -0.45
-  reflection.position.y = -2.55
-
-  group.add(panel, reflection)
-
-  const isMobile = window.matchMedia('(max-width: 767px)').matches
-
-  if (isMobile) {
-    group.rotation.set(0, 0, 0)
-  } else {
-    group.rotation.set(-0.18, -0.32, 0)
-  }
-
-  scene.add(group)
-
-  return {
-    scene,
-    geometry,
-    panelMaterial,
-    reflectionMaterial,
-  }
-}
-
-function createCamera() {
-  const camera = new PerspectiveCamera(40, 1, 0.1, 50)
-  camera.position.z = CONFIG.cameraPosition
-
-  return camera
+  drawCode(context, lines, characters, cursor)
+  texture.needsUpdate = true
 }
 
 onMounted(async () => {
-  const hostElement = host.value
-
-  if (!hostElement) return
-
-  const el: HTMLDivElement = hostElement
+  const el = host.value
+  if (!el) return
 
   try {
     await document.fonts.load('30px Ubuntu')
@@ -372,7 +231,7 @@ onMounted(async () => {
     //
   }
 
-  if (disposed || !el.isConnected) return
+  if (!el.isConnected) return
 
   let renderer: WebGLRenderer
 
@@ -386,59 +245,95 @@ onMounted(async () => {
     return
   }
 
+  const lines = ref(createLines())
+  const totalCharacters = () =>
+    lines.value.reduce(
+      (sum, line) =>
+        sum + line.reduce((n, token) => n + token[0].length, 0) + 1,
+      0,
+    )
+
+  const main = createCanvas(CONFIG.width, CONFIG.height)
+  const fade = createCanvas(8, 256)
+
+  const gradient = fade.context.createLinearGradient(0, 0, 0, 256)
+  gradient.addColorStop(0, '#000')
+  gradient.addColorStop(1, '#aaa')
+  fade.context.fillStyle = gradient
+  fade.context.fillRect(0, 0, 8, 256)
+  fade.texture.colorSpace = NoColorSpace
+
+  const scene = new Scene()
+  const group = new Group()
+  const geometry = new PlaneGeometry(CONFIG.panelWidth, CONFIG.panelHeight)
+
+  const material = new MeshBasicMaterial({
+    map: main.texture,
+    transparent: true,
+  })
+
+  const reflectionMaterial = new MeshBasicMaterial({
+    map: main.texture,
+    alphaMap: fade.texture,
+    transparent: true,
+    opacity: 0.45,
+    side: DoubleSide,
+    depthWrite: false,
+  })
+
+  group.add(new Mesh(geometry, material))
+
+  const reflection = new Mesh(geometry, reflectionMaterial)
+  reflection.scale.y = -0.45
+  reflection.position.y = -2.55
+  group.add(reflection)
+
+  if (window.innerWidth >= 768) {
+    group.rotation.set(-0.18, -0.32, 0)
+  }
+
+  scene.add(group)
+
+  const camera = new PerspectiveCamera(40, 1, 0.1, 50)
+  camera.position.z = 7.5
+
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
   renderer.domElement.setAttribute('aria-hidden', 'true')
   el.appendChild(renderer.domElement)
 
-  const main = createCanvas(CONFIG.canvasWidth, CONFIG.canvasHeight)
-  const fade = createReflection()
-
-  const { scene, geometry, panelMaterial, reflectionMaterial } = createScene(
-    main.texture,
-    fade.texture,
-  )
-
-  const camera = createCamera()
-
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let reducedMotion = props.respectReducedMotion && motionQuery.matches
+  let visible = true
   let typed = 0
   let lastTime = 0
+  let raf = 0
   let lastDrawn = -1
-  let lastCursorState = false
-  let visible = true
+  let lastCursor = false
 
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const render = () => renderer.render(scene, camera)
 
-  let reducedMotion = props.respectReducedMotion && motionQuery.matches
-
-  function render() {
-    renderer.render(scene, camera)
-  }
-
-  function updateCanvas(characters: number, cursorVisible: boolean) {
-    drawMainCanvas(main, characters, cursorVisible)
-
+  const update = (characters: number, cursor: boolean) => {
+    drawPanel(main, lines.value, characters, cursor)
     lastDrawn = characters
-    lastCursorState = cursorVisible
+    lastCursor = cursor
   }
 
-  function resize() {
+  const resize = () => {
     const width = el.clientWidth
     const height = el.clientHeight
-
-    if (width <= 0 || height <= 0) return
+    if (!width || !height) return
 
     renderer.setSize(width, height, false)
-
     camera.aspect = width / height
     camera.updateProjectionMatrix()
 
     if (reducedMotion) {
-      updateCanvas(TOTAL_CHARACTERS(), true)
+      update(totalCharacters(), true)
       render()
     }
   }
 
-  function loop(time: number) {
+  const loop = (time: number) => {
     raf = requestAnimationFrame(loop)
 
     if (!visible || reducedMotion) {
@@ -447,42 +342,33 @@ onMounted(async () => {
     }
 
     const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0
-
     lastTime = time
-    typed += CONFIG.typingSpeed * delta
-
-    if (typed > TOTAL_CHARACTERS() + 60) {
-      typed = 0
-    }
+    typed = (typed + CONFIG.typingSpeed * delta) % (totalCharacters() + 60)
 
     const characters = Math.floor(typed)
-    const cursorVisible = Math.floor(time / CONFIG.cursorInterval) % 2 === 1
+    const cursor = Math.floor(time / CONFIG.cursorInterval) % 2 === 1
 
-    if (characters !== lastDrawn || cursorVisible !== lastCursorState) {
-      updateCanvas(characters, cursorVisible)
+    if (characters !== lastDrawn || cursor !== lastCursor) {
+      update(characters, cursor)
+      render()
     }
-
-    render()
   }
 
-  function startAnimation() {
+  const start = () => {
     cancelAnimationFrame(raf)
     lastTime = 0
     raf = requestAnimationFrame(loop)
   }
 
-  function onMotionChange(event: MediaQueryListEvent) {
-    if (!props.respectReducedMotion) return
-
+  const onMotionChange = (event: MediaQueryListEvent) => {
     reducedMotion = event.matches
-
     if (reducedMotion) {
       cancelAnimationFrame(raf)
-      typed = TOTAL_CHARACTERS()
-      updateCanvas(TOTAL_CHARACTERS(), true)
+      typed = totalCharacters()
+      update(typed, true)
       render()
     } else {
-      startAnimation()
+      start()
     }
   }
 
@@ -493,67 +379,46 @@ onMounted(async () => {
     visible = entry?.isIntersecting ?? true
     lastTime = 0
   })
-
   intersectionObserver.observe(el)
-
-  resize()
 
   if (props.respectReducedMotion) {
     motionQuery.addEventListener('change', onMotionChange)
   }
 
+  resize()
+
   if (reducedMotion) {
-    updateCanvas(TOTAL_CHARACTERS(), true)
+    update(totalCharacters(), true)
     render()
   } else {
-    startAnimation()
+    start()
   }
 
-  const stopLocaleWatch = watch(locale, () => {
-    LINES = createLines()
+  const stopWatch = watch(locale, () => {
+    lines.value = createLines()
     typed = 0
-    lastTime = 0
     lastDrawn = -1
-
-    if (reducedMotion) {
-      typed = TOTAL_CHARACTERS()
-      updateCanvas(TOTAL_CHARACTERS(), true)
-    } else {
-      updateCanvas(0, true)
-    }
-
+    update(reducedMotion ? totalCharacters() : 0, true)
     render()
   })
 
-  cleanup = () => {
-    stopLocaleWatch()
-
+  onBeforeUnmount(() => {
+    stopWatch()
     cancelAnimationFrame(raf)
-
     resizeObserver.disconnect()
     intersectionObserver.disconnect()
-
-    if (props.respectReducedMotion) {
-      motionQuery.removeEventListener('change', onMotionChange)
-    }
+    motionQuery.removeEventListener('change', onMotionChange)
 
     geometry.dispose()
-    panelMaterial.dispose()
+    material.dispose()
     reflectionMaterial.dispose()
-
     main.texture.dispose()
     fade.texture.dispose()
 
     renderer.dispose()
     renderer.forceContextLoss()
     renderer.domElement.remove()
-  }
-})
-
-onBeforeUnmount(() => {
-  disposed = true
-  cleanup?.()
-  cleanup = null
+  })
 })
 </script>
 
